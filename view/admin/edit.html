@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>markItUp! Universal markup editor</title>
+	<link rel="stylesheet" type="text/css" href="images/style.css">
+	<!-- markItUp! skin -->
+	<link rel="stylesheet" type="text/css" href="markitup/skins/markitup/style.css">
+	<!--  markItUp! toolbar skin -->
+	<link rel="stylesheet" type="text/css" href="markitup/sets/default/style.css">
+	<!-- jQuery -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+	<!-- markItUp! -->
+	<script type="text/javascript" src="markitup/jquery.markitup.js"></script>
+	<!-- markItUp! toolbar settings -->
+	<script type="text/javascript" src="markitup/sets/default/set.js"></script>
+</head>
+<body>
+
+<div style="width:940px;margin:0px auto;margin-top:20px;">
+Title:<input type="input" style="width:400px;" id="title" value="<%=message[0].link%>"/>
+<hr>
+ShortDesc:
+<textarea id="shortDesc" cols="80" rows="20">	
+    <%=message[0].desc%>
+</textarea>
+<hr>
+Link:<input type="input" style="width:800px;" id="link" value="<%=message[0].link%>"/>
+<hr>
+Code:
+<textarea id="codeMarkIt" cols="80" rows="20">
+	<%=message[0].code%>
+</textarea>
+<button style="width:50px;height:20px;" id="submit">提交</button>
+</div>
+<input type="hidden" value="<%=message[0].id%>" id="edit-id">
+
+<script type="text/javascript">
+$(function() {
+	$('#markItUp').markItUp(mySettings);
+
+	$('#codeMarkIt').markItUp(mySettings);
+
+	$("#shortDesc").markItUp(mySettings);
+
+	$("#submit").click(function(){
+		var title = $("#title").val();
+		var shortDesc = $("#shortDesc").val();
+		var code = $("#codeMarkIt").val();
+		var link = $("#link").val();
+		var id = $("#edit-id").val();
+		//insert into db:
+		$.post("/editmessage",{
+			id:id,
+			title:title,
+			desc:shortDesc,
+			code:code,
+			link:link
+		},function(){
+			location.reload();
+		})
+	});
+
+	
+});
+</script>
+</body>
+</html>

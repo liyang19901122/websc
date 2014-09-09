@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)http://purecss.io/start/ -->
+<html lang="en" class="wf-omnespro-n2-active wf-omnespro-n3-active wf-proximanova-n1-active wf-proximanova-n4-active wf-proximanova-n7-active wf-active yui3-js-enabled">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Start your next web project with Pure.">
+    <title>BTCPRO Message</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="/combo/1.16.1?/css/main-grid-old-ie.css&/css/main-old-ie.css&/css/start.css&/css/rainbow/baby-blue.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://purecss.io/combo/1.16.1?/css/main-grid.css&/css/main.css&/css/start.css&/css/rainbow/baby-blue.css">
+    <!--<![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <![endif]-->
+    <body>
+    <div id="layout" style="padding-left:0px;">
+        <div id="main">
+            <div class="header">
+                <h1>BTCPRO 消息</h1>
+                <h2>最新虚拟币简洁资讯</h2>
+            </div>
+            
+            </div>
+            <div>
+                <div class="content" style="text-align:center;">
+                    @copyright BTCPRO 2014
+                </div>
+            </div>
+    </body>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script>
+    $(function(){
+        $.get("/getmessage",function(data){
+            //console.log(data);a
+            for(var i in data){
+            	var item = data[i];
+                var html =  '<a href="/admin/edit?id='+item.id+'"><div class="content">'
+                +'<h2 id="add-pure-to-your-page" class="content-subhead">'+item.title+'<a href="'+item.link+'" class="content-link" title="Heading anchor"></a></h2>'
+                +'<aside><p>'+item.desc+'</p></aside><pre class="code" data-language="html"><code class="rainbow">'+item.code+'</code></pre></div>';
+		$("#main").append(html);
+	    }
+        });
+    })
+    </script>
+</html>
