@@ -49,6 +49,7 @@
               <li><a class="nav-link" href="documentation.html">IPO</a></li>
               <li><a class="nav-link" href="free-psd.html">Announcement</a></li>
               <li><a class="nav-link" href="#contact">Contact Us</a></li>
+              <li><a class="nav-link" href="javascript:void(0);" id="login">Login</a></li>
             </ul>
           </div>
         </div>
@@ -151,7 +152,21 @@
         <div class="col-md-12">
           <div class="timeline">
             <dl>
-              <dt>Apr 2014</dt>
+              <dt>Oct 2014</dt>
+              <dd class="pos-left clearfix">
+                <div class="circ"></div>
+                <div class="time">Oct 1</div>
+                <div class="events">
+                  <div class="pull-right">
+                    <img class="events-object img-rounded" src="img/photo-1.jpg">
+                  </div>
+                  <div class="events-body">
+                    <h4 class="events-heading">Register as circle member</h4>
+                    <p>First step you need to register as our member and later we will offer services for our member.</p>
+                  </div>
+                </div>
+              </dd>
+              
               <dd class="pos-right clearfix">
                 <div class="circ"></div>
                 <div class="time">Apr 14</div>
@@ -260,52 +275,88 @@
         <hr class="dashed" />
         <div class="copyright clearfix">
           <p><b>Circle</b></p>
-          <p>&copy; 2014 <a href="http://www.flathemes.com" target="_blank">FLATHEMES</a>, Inc. All rights reserved. &nbsp;&nbsp;Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/" rel="external nofollow">CC BY 3.0</a>.</p>
+          <p>&copy; 2014 <a href="http://www.flathemes.com" target="_blank">Circle</a>, Team. All rights reserved. &nbsp;&nbsp;Code licensed under <a href="http://opensource.org/licenses/mit-license.html" target="_blank" rel="external nofollow">MIT License</a></p>
         </div>
       </div>
+
+      
+       
+
+
+         
+      
     </div>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+     <div class="row example-modal" style="position:fixed;top:200px;margin:0px; auto;width:100%;z-index:200;display:none;" id="login-win">
+          <div class="col-md-12">
+            <div class="modal">
+              <div class="modal-dialog" style="margin:0px auto;">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="x-close-login">×</button>
+                    <h4 class="modal-title">Register/Login</h4>
+                  </div>
+                  <div class="modal-body">
+                    
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <label>Bitcointalk username</label>
+                        <input type="text" class="form-control" placeholder="Name">
+                      </div>
+                      <div class="col-xs-6">
+                        <label>Password</label>
+                        <input type="password" class="form-control">
+                      </div>
+                    </div>
+  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close-login">Close</button>
+                    <button type="button" class="btn btn-success" id="btn-login">OK</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
 
-      ga('create', 'UA-48721682-1', 'bootflat.github.io');
-      ga('require', 'displayfeatures');
-      ga('send', 'pageview');
-
-    </script>
+   
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.slicebox.js"></script>
     <script type="text/javascript">
       $(function() {
+        //login:
+        $("#login").click(function(){
+          $("#login-win").css("display","block");
+        });
+
+        $("#x-close-login").click(function(){
+          $("#login-win").css("display","none")
+        });
+
+        $("#close-login").click(function(){
+          $("#login-win").css("display","none")
+        });
 
         var Page = (function() {
-
           var $navArrows = $( '#nav-arrows' ).hide(),
             $navDots = $( '#nav-dots' ).hide(),
             $nav = $navDots.children( 'span' ),
             $shadow = $( '#shadow' ).hide(),
             slicebox = $( '#sb-slider' ).slicebox( {
               onReady : function() {
-
                 $navArrows.show();
                 $navDots.show();
                 $shadow.show();
-
               },
               onBeforeChange : function( pos ) {
-
                 $nav.removeClass( 'nav-dot-current' );
-                $nav.eq( pos ).addClass( 'nav-dot-current' );
-
+                $nav.eq(pos).addClass( 'nav-dot-current' );
               }
-            } ),
+            }),
             
             init = function() {
-
               initEvents();
-              
             },
             initEvents = function() {
 
